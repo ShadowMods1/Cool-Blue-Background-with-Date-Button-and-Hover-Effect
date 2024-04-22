@@ -47,6 +47,22 @@
     // Append the button to the body of the document
     document.body.appendChild(btnToggleColor);
 
+    // Create a new button element for font toggle
+    var btnToggleFont = document.createElement("BUTTON");
+    btnToggleFont.innerHTML = "Toggle Font";
+    btnToggleFont.style.position = "fixed";
+    btnToggleFont.style.top = "90px";
+    btnToggleFont.style.right = "10px";
+
+    // Add a click event listener to the button
+    btnToggleFont.addEventListener("click", function() {
+        var currentFont = window.getComputedStyle(document.body).fontFamily;
+        document.body.style.fontFamily = currentFont === "Arial, sans-serif" ? "'Courier New', monospace" : "Arial, sans-serif";
+    });
+
+    // Append the button to the body of the document
+    document.body.appendChild(btnToggleFont);
+
     // Get all paragraph elements
     var pElements = document.getElementsByTagName("p");
 
