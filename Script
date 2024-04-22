@@ -1,0 +1,48 @@
+// ==UserScript==
+// @name         Cool Blue Background with Date Button and Hover Effect
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  Change the background color of all web pages to a cool blue color, add a date button, and a hover effect.
+// @author       Copilot
+// @match        *://*/*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    // Change the background color to a cool blue color
+    document.body.style.backgroundColor = "#ADD8E6";
+
+    // Create a new button element
+    var btn = document.createElement("BUTTON");
+    btn.innerHTML = "Show Current Date and Time";
+    btn.style.position = "fixed";
+    btn.style.top = "10px";
+    btn.style.right = "10px";
+
+    // Add a click event listener to the button
+    btn.addEventListener("click", function() {
+        var currentDateTime = new Date();
+        alert("Current Date and Time: " + currentDateTime);
+    });
+
+    // Append the button to the body of the document
+    document.body.appendChild(btn);
+
+    // Get all paragraph elements
+    var pElements = document.getElementsByTagName("p");
+
+    // Loop through all paragraph elements
+    for (var i = 0; i < pElements.length; i++) {
+        // Add a mouseover event listener to change the text color to green
+        pElements[i].addEventListener("mouseover", function() {
+            this.style.color = "#008000";
+        });
+
+        // Add a mouseout event listener to change the text color back to black
+        pElements[i].addEventListener("mouseout", function() {
+            this.style.color = "#000000";
+        });
+    }
+})();
