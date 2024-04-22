@@ -2,7 +2,7 @@
 // @name         AquaSurf: The Interactive Web Enhancer
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  Change the background color of all web pages to a cool blue color, add a date button, and a hover effect.
+// @description  Change the background color of all web pages, add a date button, a hover effect, and more.
 // @author       NexusFusion
 // @match        *://*/*
 // @grant        none
@@ -11,24 +11,41 @@
 (function() {
     'use strict';
 
-    // Change the background color to a cool blue color
-    document.body.style.backgroundColor = "#ADD8E6";
+    // Initial background color
+    var backgroundColor = "#ADD8E6";
+    document.body.style.backgroundColor = backgroundColor;
 
-    // Create a new button element
-    var btn = document.createElement("BUTTON");
-    btn.innerHTML = "Show Current Date and Time";
-    btn.style.position = "fixed";
-    btn.style.top = "10px";
-    btn.style.right = "10px";
+    // Create a new button element for date and time
+    var btnDateTime = document.createElement("BUTTON");
+    btnDateTime.innerHTML = "Show Current Date and Time";
+    btnDateTime.style.position = "fixed";
+    btnDateTime.style.top = "10px";
+    btnDateTime.style.right = "10px";
 
     // Add a click event listener to the button
-    btn.addEventListener("click", function() {
+    btnDateTime.addEventListener("click", function() {
         var currentDateTime = new Date();
         alert("Current Date and Time: " + currentDateTime);
     });
 
     // Append the button to the body of the document
-    document.body.appendChild(btn);
+    document.body.appendChild(btnDateTime);
+
+    // Create a new button element for background color toggle
+    var btnToggleColor = document.createElement("BUTTON");
+    btnToggleColor.innerHTML = "Toggle Background Color";
+    btnToggleColor.style.position = "fixed";
+    btnToggleColor.style.top = "50px";
+    btnToggleColor.style.right = "10px";
+
+    // Add a click event listener to the button
+    btnToggleColor.addEventListener("click", function() {
+        backgroundColor = backgroundColor === "#ADD8E6" ? "#FFD700" : "#ADD8E6";
+        document.body.style.backgroundColor = backgroundColor;
+    });
+
+    // Append the button to the body of the document
+    document.body.appendChild(btnToggleColor);
 
     // Get all paragraph elements
     var pElements = document.getElementsByTagName("p");
@@ -38,11 +55,13 @@
         // Add a mouseover event listener to change the text color to green
         pElements[i].addEventListener("mouseover", function() {
             this.style.color = "#008000";
+            this.style.fontSize = "20px";
         });
 
         // Add a mouseout event listener to change the text color back to black
         pElements[i].addEventListener("mouseout", function() {
             this.style.color = "#000000";
+            this.style.fontSize = "16px";
         });
     }
 })();
